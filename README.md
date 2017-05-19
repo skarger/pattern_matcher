@@ -1,15 +1,17 @@
 # PatternMatcher
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pattern_matcher`. To experiment with that code, run `bin/console` for an interactive prompt.
+Demo gem that implements wildcard pattern matching.
 
-TODO: Delete this and the text above, and describe your gem
+Matches runs of plain characters, e.g. `PatternMatcher.match("aba", "aba") == true`
+
+Also supports patterns with `<letter>*` for zero or more occurrences of that letter: `PatternMatcher.match("abba", "b*ab*a") == true`
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'pattern_matcher'
+gem 'pattern_matcher', git: "https://github.com/skarger/pattern_matcher.git"
 ```
 
 And then execute:
@@ -18,11 +20,20 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install pattern_matcher
+    $ git clone git@github.com:skarger/pattern_matcher.git
+    $ rake build
+    $ gem install pkg/pattern_matcher-0.1.0.gem
 
 ## Usage
-
-TODO: Write usage instructions here
+```
+$ irb
+irb(main):001:0> require 'pattern_matcher'
+=> true
+irb(main):002:0> PatternMatcher.match("aabba", "aab*a*")
+=> true
+irb(main):003:0> PatternMatcher.match("baabba", "aab*a*")
+=> false
+```
 
 ## Development
 
@@ -32,7 +43,8 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/pattern_matcher.
+This is a demo project, but if you insist:
+Bug reports and pull requests are welcome on GitHub at https://github.com/skarger/pattern_matcher.
 
 
 ## License
