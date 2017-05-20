@@ -2,9 +2,13 @@
 
 Demo gem that implements wildcard pattern matching.
 
-Matches runs of plain characters, e.g. `PatternMatcher.match("aba", "aba") == true`
+Matches runs of plain characters, e.g.
 
-Also supports patterns with `<letter>*` for zero or more occurrences of that letter: `PatternMatcher.match("abba", "b*ab*a") == true`
+`PatternMatcher.match("aba", "aba") == true`
+
+Also supports patterns with `<letter>*` for zero or more occurrences of that letter:
+
+`PatternMatcher.match("abba", "b*ab*a") == true`
 
 ## Installation
 
@@ -44,6 +48,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 This is a demo project, but if you insist:
+
 Bug reports and pull requests are welcome on GitHub at https://github.com/skarger/pattern_matcher.
 
 
