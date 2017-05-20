@@ -47,14 +47,17 @@ module PatternMatcher
   def self.lazy_match?(letters, pattern_letter, rest_of_pattern)
     return true if letters == []
 
-    return match_list(letters, rest_of_pattern) if letters[0] != pattern_letter
-
     letters.each_with_index do |letter, index|
-      rest_of_input = letters[index + 1, letters.length]
-      if match_list(rest_of_input, rest_of_pattern)
-        return true
+      if letter != pattern_letter
+        return match_list(letters[index, letters.length], rest_of_pattern)
+      else
+        rest_of_input = letters[index + 1, letters.length]
+        if match_list(rest_of_input, rest_of_pattern)
+          return true
+        end
       end
     end
+
     return false
   end
 end

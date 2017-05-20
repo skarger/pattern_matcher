@@ -2,13 +2,20 @@
 
 Demo gem that implements wildcard pattern matching.
 
-Matches runs of plain characters, e.g.
+Matches runs of plain characters and patterns with `<letter>*` representing zero or more occurrences of that letter:
 
-`PatternMatcher.match("aba", "aba") == true`
-
-Also supports patterns with `<letter>*` for zero or more occurrences of that letter:
-
-`PatternMatcher.match("abba", "b*ab*a") == true`
+```
+PatternMatcher.match("aba", "aba")
+=> true
+PatternMatcher.match("aaa", "aba")
+=> false
+PatternMatcher.match("abba", "b*ab*a")
+=> true
+PatternMatcher.match("aabbccdd", "a*b*c*d*")
+=> true
+PatternMatcher.match("aabbccdde", "a*b*c*d*")
+=> false
+```
 
 Production code is here: https://github.com/skarger/pattern_matcher/blob/master/lib/pattern_matcher.rb
 

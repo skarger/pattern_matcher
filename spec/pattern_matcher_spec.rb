@@ -64,14 +64,16 @@ RSpec.describe PatternMatcher do
       expect(PatternMatcher.match("aa", "b*aa")).to eq(true)
     end
 
+    it "still supports sub-runs with no * character" do
+      expect(PatternMatcher.match("baab", "baab*")).to eq(true)
+    end
+
     it "returns false if *-repetition cannot satisfy match" do
       expect(PatternMatcher.match("b", "a*")).to eq(false)
       expect(PatternMatcher.match("bbab", "b*a")).to eq(false)
       expect(PatternMatcher.match("bb", "b*a")).to eq(false)
-    end
-
-    it "still supports sub-runs with no * character" do
-      expect(PatternMatcher.match("baab", "baab*")).to eq(true)
+      expect(PatternMatcher.match("bb", "b*a")).to eq(false)
+      expect(PatternMatcher.match("bba", "b*")).to eq(false)
     end
   end
 
