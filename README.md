@@ -10,6 +10,10 @@ Also supports patterns with `<letter>*` for zero or more occurrences of that let
 
 `PatternMatcher.match("abba", "b*ab*a") == true`
 
+Production code is here: https://github.com/skarger/pattern_matcher/blob/master/lib/pattern_matcher.rb
+
+Rspec tests are here: https://github.com/skarger/pattern_matcher/blob/master/spec/pattern_matcher_spec.rb
+
 ## Installation
 
 Add this line to your application's Gemfile:
