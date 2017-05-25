@@ -2,7 +2,7 @@ require "pattern_matcher/version"
 
 module PatternMatcher
   def self.match(input, pattern)
-    letters = input.split ""
+    letters = input.split("")
     self.match_list(letters, pattern)
   end
 
@@ -12,10 +12,10 @@ module PatternMatcher
     if pattern == ""
       letters == []
     else
-      initial_pattern, rest_of_pattern = partition_pattern(pattern)
-      pattern_letter = initial_pattern[0]
+      first_segment, rest_of_pattern = partition(pattern)
+      pattern_letter = first_segment[0]
 
-      if zero_or_more_pattern? initial_pattern
+      if zero_or_more_pattern?(first_segment)
         lazy_match?(letters, pattern_letter, rest_of_pattern)
       else
         letters[0] == pattern_letter &&
@@ -25,7 +25,7 @@ module PatternMatcher
   end
 
   # expects pattern to be a string with length >= 1
-  def self.partition_pattern(pattern)
+  def self.partition(pattern)
     if pattern.length > 1
       if pattern[1] == "*"
         # "a*bab*a" -> ["a*", "bab*a"]
@@ -41,7 +41,7 @@ module PatternMatcher
   end
 
   def self.zero_or_more_pattern?(pattern)
-    pattern.length > 1
+    pattern.length == 2
   end
 
   def self.lazy_match?(letters, pattern_letter, rest_of_pattern)
@@ -52,9 +52,7 @@ module PatternMatcher
         return match_list(letters[index, letters.length], rest_of_pattern)
       else
         rest_of_input = letters[index + 1, letters.length]
-        if match_list(rest_of_input, rest_of_pattern)
-          return true
-        end
+        return true if match_list(rest_of_input, rest_of_pattern)
       end
     end
 
